@@ -10,8 +10,8 @@ import sqlite3
 
 ROUTES = frozenset({'/health', '/owner-task/pending'})
 TOOLS = frozenset({'whatsapp_envio_pontual', 'whatsapp_estado_envio', 'whatsapp_consultar_envios', 'whatsapp_preparar_mensagem', 'whatsapp_executar_ditado'})
-CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol')
-STATES = frozenset({'authorized', 'queued', 'preparing', 'sending', 'sent', 'uncertain', 'revoked', 'expired', 'failed', 'waiting_first', 'waiting_ack', 'claimed', 'thank_sending', 'blocking', 'completed', 'superseded'})
+CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol', 'ownerContextPlanProtocol')
+STATES = frozenset({'authorized', 'queued', 'preparing', 'sending', 'sent', 'uncertain', 'revoked', 'expired', 'failed', 'waiting_first', 'waiting_ack', 'claimed', 'thank_sending', 'blocking', 'completed', 'superseded', 'prepared', 'publishing', 'reviewed', 'consumed'})
 
 
 def safe_state(value):
@@ -40,6 +40,8 @@ def project_pending(data):
         counts[state] = counts.get(state, 0) + 1
     followup = latest.get('followup') if isinstance(latest, dict) else None
     return {'pending_by_state': counts,
+            'context_plan_present': isinstance(data.get('plan'), dict),
+            'context_plan_state': safe_state(data.get('plan', {}).get('state')) if isinstance(data.get('plan'), dict) else None,
             'dictated_sources': len(data.get('dictated')) if isinstance(data.get('dictated'), list) else 0,
             'preparation_present': isinstance(data.get('preparation'), dict),
             'latest_state': safe_state(latest.get('state')) if isinstance(latest, dict) else 'unknown',
@@ -59,9 +61,12 @@ def inspect_sessions(profile):
             prompt = db.execute('SELECT prompt FROM system_prompts WHERE hash=?', (prompt_hash,)).fetchone()
             pin = db.execute('SELECT prompt FROM system_prompts WHERE hash=?', (pin_hash,)).fetchone()
             data = json.loads(pin[0]) if pin else {}
-            names = {t.get('function', {}).get('name') for t in data.get('tools', []) if isinstance(t, dict)}
+            names = {t.get('function', {}).get('name') or t.get('name') for t in data.get('tools', []) if isinstance(t, dict)}
             text = prompt[0] if prompt else ''
-            result.append({'protected_tools_complete': TOOLS <= names,
+            deferred_bridge = {'tool_search', 'tool_describe', 'tool_call'} <= names
+            result.append({'deferred_catalog_available': deferred_bridge,
+                           'snapshot_alone_diagnoses_tool_absence': False,
+                           'protected_tools_complete': TOOLS <= names,
                            'protected_tools_present': len(TOOLS & names),
                            'administrative_policy_rc8_present': 'shar-whatsapp-policy-rc8:start' in text,
                            'obsolete_policy_marker_present': 'shar-whatsapp-policy-20261110:start' in text})

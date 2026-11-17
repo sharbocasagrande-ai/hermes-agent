@@ -114,3 +114,23 @@ def test_http_refusal_closes_connection_and_does_not_read_private_body():
         raise AssertionError('HTTP refusal should fail')
     connection.getresponse.return_value.read.assert_not_called()
     connection.close.assert_called_once()
+
+
+def test_deferred_catalog_is_not_diagnosed_as_missing_tools(tmp_path):
+    profile=tmp_path/'profile';profile.mkdir();db=sqlite3.connect(profile/'state.db')
+    db.executescript('CREATE TABLE sessions(source,ended_at,system_prompt_hash,tool_names);CREATE TABLE system_prompts(hash,prompt);')
+    tools=[{'type':'function','function':{'name':n}} for n in ['tool_search','tool_describe','tool_call']]
+    db.execute('INSERT INTO system_prompts VALUES(?,?)',('pin',json.dumps({'tools':tools})))
+    db.execute('INSERT INTO system_prompts VALUES(?,?)',('prompt','shar-whatsapp-policy-rc8:start'))
+    db.execute('INSERT INTO sessions VALUES(?,NULL,?,?)',('whatsapp','prompt','pin'));db.commit();db.close()
+    row=m.inspect_sessions(profile)['sessions'][0]
+    assert row['protected_tools_present']==0
+    assert row['deferred_catalog_available'] is True
+    assert row['snapshot_alone_diagnoses_tool_absence'] is False
+
+
+def test_context_plan_projection_drops_private_content_and_source():
+    value=m.project_pending({'plan':{'state':'reviewed','planId':'PRIVATE_ID','text':'PRIVATE_TEXT','recipient':'PRIVATE_NUMBER'}})
+    assert value['context_plan_present'] is True
+    assert value['context_plan_state']=='reviewed'
+    assert 'PRIVATE_' not in json.dumps(value)

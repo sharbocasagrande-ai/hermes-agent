@@ -1,6 +1,6 @@
 # Configurações do WhatsApp — envio e resposta sob ordem do titular
 
-Versão da skill: 2.0.0. Contrato de referência: ponte protegida RC8, verificada em 2026-11-15. Esta é uma especificação técnica portátil: identidades, caminhos da instalação e comprovantes pessoais ficam no inventário privado do titular.
+Versão da skill: 2.1.0, revisão em 2026-11-17. RC8 conserva suas capacidades verificadas. O pacote RC9 de planos contextuais foi testado isoladamente; somente `ownerContextPlanProtocol=1` na ponte ativa comprova instalação dessa extensão. Esta é uma especificação técnica portátil: identidades, caminhos da instalação e comprovantes pessoais ficam no inventário privado do titular.
 
 ## Regra central
 
@@ -48,3 +48,9 @@ A aplicação administrativa precisa preservar dono, contas, ACLs, isolamento e 
 ## Atualização deste registro
 
 Ao mudar o runtime, confira capacidades e limites no código/testes e no serviço ativo antes de atualizar a matriz. Não reutilize contagens antigas de testes como prova de uma versão nova. Relato do titular, aceitação pelo SDK, entrega e leitura são evidências diferentes.
+
+## Planos contextuais e descoberta sob demanda
+
+Quando RC9 estiver ativo, uma preparação nativa pode receber uma proposta de plano completo, mostrada somente ao titular. A confirmação curta precisa apontar para essa prévia íntegra e recente, no mesmo chat. Sem prévia nativa, sem fonte ou após alteração/expiração, não há envio. Detalhes em [confirmação contextual](references/confirmacao-contextual.md).
+
+O Hermes pode apresentar as ferramentas do plugin por catálogo sob demanda: descobrir, descrever e chamar os cinco nomes existentes. Um snapshot com ferramentas centrais e `tool_search`/`tool_describe`/`tool_call` pode estar correto; não resetar a conversa nem ampliar permissões por essa contagem.
