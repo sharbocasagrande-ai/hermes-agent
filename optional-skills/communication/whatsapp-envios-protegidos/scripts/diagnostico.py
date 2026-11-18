@@ -10,7 +10,7 @@ import sqlite3
 
 ROUTES = frozenset({'/health', '/owner-task/pending'})
 TOOLS = frozenset({'whatsapp_envio_pontual', 'whatsapp_estado_envio', 'whatsapp_consultar_envios', 'whatsapp_preparar_mensagem', 'whatsapp_executar_ditado'})
-CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol', 'ownerContextPlanProtocol')
+CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol', 'ownerContextPlanProtocol', 'ownerFollowupSpeechProtocol')
 STATES = frozenset({'authorized', 'queued', 'preparing', 'sending', 'sent', 'uncertain', 'revoked', 'expired', 'failed', 'waiting_first', 'waiting_ack', 'claimed', 'thank_sending', 'blocking', 'completed', 'superseded', 'prepared', 'publishing', 'reviewed', 'consumed'})
 
 

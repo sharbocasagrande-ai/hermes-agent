@@ -1,6 +1,6 @@
 # Confirmação contextual — plano completo e origem protegida
 
-Revisão 2026-11-17. Esta referência descreve o pacote RC9 testado. Consulte a capacidade `ownerContextPlanProtocol`: sem valor 1 na ponte ativa, a extensão ainda não está instalada. Arquivo escrito ou skill carregada não comprovam instalação do runtime.
+Revisão 2026-11-17. Esta referência descreve o contrato introduzido no RC9 e conservado no RC9.1. Consulte a capacidade `ownerContextPlanProtocol`: sem valor 1 na ponte ativa, a extensão ainda não está instalada. Arquivo escrito ou skill carregada não comprovam instalação do runtime.
 
 ## 1. Ordem suficiente segue diretamente
 

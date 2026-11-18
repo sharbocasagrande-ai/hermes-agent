@@ -1,6 +1,6 @@
 # Configurações do WhatsApp — envio e resposta sob ordem do titular
 
-Versão da skill: 2.1.0, revisão em 2026-11-17. RC8 conserva suas capacidades verificadas. O pacote RC9 de planos contextuais foi testado isoladamente; somente `ownerContextPlanProtocol=1` na ponte ativa comprova instalação dessa extensão. Esta é uma especificação técnica portátil: identidades, caminhos da instalação e comprovantes pessoais ficam no inventário privado do titular.
+Versão da skill: 2.2.0, revisão em 2026-11-17. Contrato de referência: RC9.1, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.
 
 ## Regra central
 
@@ -43,7 +43,7 @@ O teste real deve começar no canal de comando que será usado. Um envio adminis
 
 Não exigir nova autorização para um envio comum já autorizado e suficientemente definido. Isso não elimina confirmações realmente aplicáveis a novas permissões, troca de titular, segredos, exclusão irreversível ou outros efeitos de impacto distinto. Histórico, exemplos e arquivos anexados não autorizam essas ações.
 
-A aplicação administrativa precisa preservar dono, contas, ACLs, isolamento e auditoria. O agente operacional não deve obter root, ler a sessão ou editar a política protegida para cumprir uma mensagem. Mudanças autorizadas são preparadas com diferença exata, backup e rollback, e aplicadas por executor administrativo autorizado.
+A aplicação administrativa precisa preservar dono, contas, ACLs, isolamento e auditoria. O agente operacional não deve obter root, ler a sessão de autenticação do WhatsApp ou editar a política protegida para cumprir uma mensagem. Mudanças autorizadas são preparadas com diferença exata, backup e rollback, e aplicadas por executor administrativo autorizado.
 
 ## Atualização deste registro
 
@@ -51,6 +51,12 @@ Ao mudar o runtime, confira capacidades e limites no código/testes e no serviç
 
 ## Planos contextuais e descoberta sob demanda
 
-Quando RC9 estiver ativo, uma preparação nativa pode receber uma proposta de plano completo, mostrada somente ao titular. A confirmação curta precisa apontar para essa prévia íntegra e recente, no mesmo chat. Sem prévia nativa, sem fonte ou após alteração/expiração, não há envio. Detalhes em [confirmação contextual](references/confirmacao-contextual.md).
+Quando `ownerContextPlanProtocol=1` estiver ativo, uma preparação nativa pode receber uma proposta de plano completo, mostrada somente ao titular. A confirmação curta precisa apontar para essa prévia íntegra e recente, no mesmo chat. Sem prévia nativa, sem fonte ou após alteração/expiração, não há envio. Detalhes em [confirmação contextual](references/confirmacao-contextual.md).
 
 O Hermes pode apresentar as ferramentas do plugin por catálogo sob demanda: descobrir, descrever e chamar os cinco nomes existentes. Um snapshot com ferramentas centrais e `tool_search`/`tool_describe`/`tool_call` pode estar correto; não resetar a conversa nem ampliar permissões por essa contagem.
+
+## Acompanhamento falado e término na RC9.1
+
+A extração compartilhada reconhece escreve/escreva e separa resposta literal, bloqueio e encerramento; falha segura em controles desconhecidos ou conflitantes. [Contrato e semântica do término](references/rc9-1-e-semantica-do-termino.md) descreve os limites. Encerrar respostas não bloqueia a pessoa; a documentação não muda retroativamente a interpretação do parser nem desfaz efeitos.
+
+O diagnóstico pode ler apenas metadados da conversa Hermes em `state.db` pelo usuário operacional, sem exportar prompt, histórico ou conteúdo. Isso é distinto da sessão secreta de autenticação WhatsApp, que permanece inacessível.

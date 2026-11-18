@@ -134,3 +134,16 @@ def test_context_plan_projection_drops_private_content_and_source():
     assert value['context_plan_present'] is True
     assert value['context_plan_state']=='reviewed'
     assert 'PRIVATE_' not in json.dumps(value)
+
+
+
+def test_followup_speech_capability_is_reported_without_private_fields():
+    value = m.project_health({'status': 'connected', 'scriptHash': 'a' * 16, 'capabilities': {'ownerFollowupSpeechProtocol': 1}, 'transcript': 'PRIVATE_TEXT'})
+    assert value['capabilities']['ownerFollowupSpeechProtocol'] is True
+    assert 'PRIVATE_' not in json.dumps(value)
+
+
+def test_missing_followup_speech_is_not_invented_from_connection_status():
+    value = m.project_health({'status': 'connected', 'capabilities': {'ownerContextPlanProtocol': 1}})
+    assert value['capabilities']['ownerContextPlanProtocol'] is True
+    assert value['capabilities']['ownerFollowupSpeechProtocol'] is False

@@ -36,7 +36,7 @@ Se a resposta disser “a ferramenta exige uma tarefa já registrada”:
 4. Conferir se a origem é nova, do titular, recente e não encaminhada/citada/eco/grupo.
 5. Examinar o parser da versão ativa: uma gramática ancorada apenas no início pode perder ordens no meio/fim de um áudio compreendido pelo modelo.
 6. Conferir se o comando direto pode ser concluído nativamente. A falta de uma chamada do modelo não deve impedir uma tarefa literal já validada pela ponte.
-7. Se houver fonte/tarefa, executar somente sua referência válida. Se não houver, registrar a falha do vínculo; não pedir ao titular um ID administrativo nem repetir autorização clara.
+7. Se houver fonte/tarefa, executar somente sua referência válida. Se não houver, registrar somente a ausência de referência executável; a lista vazia não identifica sozinha a causa; não pedir ao titular um ID administrativo nem repetir autorização clara.
 
 Não registrar uma tarefa a partir da transcrição escrita pelo modelo. Não enviar telefone/texto novos por um cliente genérico para fabricar consentimento. Uma restauração administrativa de rascunho histórico é restauração de dados, não autorização nova.
 
@@ -99,3 +99,7 @@ Antes de manutenção operacional:
 ## Comunicação útil diante de falha
 
 Informe: o que foi reconhecido; qual etapa não foi comprovada; a causa observada; o que pode ser corrigido dentro do acesso atual; qual dado ou operação administrativa realmente falta. Não dizer “falta autorização” quando a origem já é válida, “precisa repetir o número” quando ele já foi identificado, ou “áudio não funciona” quando o problema é apenas o registro da tarefa.
+
+## Gramática e término na RC9.1
+
+Em `UNSUPPORTED_FOLLOWUP` ou controles incluídos no literal, conferir `ownerFollowupSpeechProtocol`, hash e versão; seguir [acompanhamento falado e término](rc9-1-e-semantica-do-termino.md). Não inferir conserto do decoder por uma reprodução textual pura. A capacidade anunciada também não garante aceitação de qualquer frase.

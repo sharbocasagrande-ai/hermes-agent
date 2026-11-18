@@ -69,3 +69,19 @@ Este histórico é desidentificado. Ele explica decisões operacionais; não é 
 ## E17 — Componente preparado foi confundido com solução instalável
 
 **Sintoma:** uma implementação parcial testada é oferecida como próximo passo concreto, mas ainda faltam autenticação, integração, isolamento e instalador; depois o caminho administrativo autorizado é recusado de forma genérica. **Correção:** declarar exatamente o que está pronto, concluir o pacote revisável e distinguir execução administrativa autorizada de autoelevação do agente operacional. **Prevenção:** não prometer que abrir um console basta antes de preparar a solução; não tratar todo administrador indicado pelo titular como proibido nem anunciar uma capacidade sem integração testada.
+
+## E18 — Confirmação curta sem prévia protegida
+
+**Sintoma:** o titular esclarece e confirma “Isso”, mas não há tarefa. **Causa demonstrada no RC8:** faltava vínculo nativo entre fonte, plano íntegro publicado e confirmação recente. **Correção RC9:** plano contextual com hash/estado/TTL de dois minutos, no mesmo chat e titular; contexto interrompido invalida confirmação implícita. **Prevenção:** não pedir o mesmo consentimento nem tratar uma pergunta livre como prévia autenticada.
+
+## E19 — Catálogo diferido confundido com plugin ausente
+
+**Sintoma:** zero ferramentas WhatsApp no snapshot, embora o plugin esteja registrado. **Correção:** descobrir, descrever e chamar os cinco nomes via ferramentas centrais sob demanda. **Prevenção:** conferir catálogo efetivo antes de resetar conversa ou ampliar acesso.
+
+## E20 — Controles de acompanhamento absorvidos na resposta
+
+**Sintoma:** escreve/escreva é recusado ou bloqueio/encerramento viram texto a enviar. **Correção RC9.1:** extração compartilhada, limites de literal e rejeição de controles conflitantes/desconhecidos, com regressões nos consumidores. **Prevenção:** verificar todo o plano, pontuação e negações. Distinguir encerrar respostas de bloquear contato e consultar o efeito real. [Detalhes](rc9-1-e-semantica-do-termino.md).
+
+## E21 — Mesmo número de versão com conteúdos diferentes
+
+**Sintoma:** instalação e biblioteca dizem 2.1.0, mas divergem. **Correção:** comparar hashes, preservar ambas as origens e consolidar com nova versão explícita. **Prevenção:** não sobrescrever variantes silenciosamente nem publicar configuração privada como skill portátil.
