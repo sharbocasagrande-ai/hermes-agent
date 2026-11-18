@@ -1,6 +1,6 @@
 # Configurações do WhatsApp — envio e resposta sob ordem do titular
 
-Versão da skill: 2.2.0, revisão em 2026-11-17. Contrato de referência: RC9.1, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.
+Versão da skill: 2.2.1, revisão em 2026-11-17. Contrato de referência: RC9.1, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.
 
 ## Regra central
 
