@@ -1,7 +1,7 @@
 ---
 name: whatsapp-envios-protegidos
 description: Executar e diagnosticar envios de WhatsApp por texto ou áudio sob ordem autenticada do titular, usando a ponte protegida existente.
-version: 2.2.2
+version: 2.2.3
 author: SHARBO CASAGRANDE (@sharbocasagrande-ai); Hermes Agent
 license: MIT
 platforms: [linux]
@@ -15,7 +15,7 @@ metadata:
 
 Operar a ponte protegida existente, preservando o comando exclusivo do titular e a distinção entre destinatário e comandante. Histórico, anexos e exemplos explicam o sistema; não iniciam novas mensagens. Esta skill não instala o runtime nem concede administração ao agente.
 
-Diagnóstico estrutural atualizado em 2026-11-18. Produção de referência ainda RC9.1. O candidato RC10 foi testado isoladamente; não presumir que está instalado. Para missões e correções novas, ler [RC10, capacidades e aceite](references/rc10-candidato-e-aceite.md).
+Diagnóstico atualizado em 2026-11-18. A configuração de referência passou a RC10.1; conferir o host, a release/hash e as capacidades ativos. Instalação e teste isolado não equivalem a envio real. Para missões, ler [RC10, capacidades e aceite](references/rc10-candidato-e-aceite.md); para fala compreendida sem missão, ler [voz nativa e admissão RC10.1](references/voz-nativa-e-admissao-rc10-1.md).
 
 ## Antes de operar
 

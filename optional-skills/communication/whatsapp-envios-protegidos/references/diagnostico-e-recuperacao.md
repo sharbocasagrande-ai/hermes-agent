@@ -103,3 +103,7 @@ Informe: o que foi reconhecido; qual etapa não foi comprovada; a causa observad
 ## Gramática e término na RC9.1
 
 Em `UNSUPPORTED_FOLLOWUP` ou controles incluídos no literal, conferir `ownerFollowupSpeechProtocol`, hash e versão; seguir [acompanhamento falado e término](rc9-1-e-semantica-do-termino.md). Não inferir conserto do decoder por uma reprodução textual pura. A capacidade anunciada também não garante aceitação de qualquer frase.
+
+## Admissão da fala na RC10.1
+
+Ler [voz nativa, admissão e grafia](voz-nativa-e-admissao-rc10-1.md) quando o áudio chegou e foi transcrito mas não há missão. `intake.fresh`, estado e motivo distinguem uma falha atual de dado histórico; um ditado admitido precede a tarefa. A sugestão de grafia continua sujeita à prévia nativa. Não trocar IDs, fontes ou proprietários para corrigir o reconhecimento.

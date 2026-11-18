@@ -10,7 +10,7 @@ import sqlite3
 
 ROUTES = frozenset({'/health', '/owner-task/pending'})
 TOOLS = frozenset({'whatsapp_envio_pontual', 'whatsapp_estado_envio', 'whatsapp_consultar_envios', 'whatsapp_preparar_mensagem', 'whatsapp_executar_ditado'})
-CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol', 'ownerContextPlanProtocol', 'ownerFollowupSpeechProtocol', 'ownerMissionProtocol', 'ownerContactProviderProtocol')
+CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol', 'ownerContextPlanProtocol', 'ownerFollowupSpeechProtocol', 'ownerMissionProtocol', 'ownerContactProviderProtocol', 'ownerNaturalUtteranceProtocol')
 STATES = frozenset({'authorized', 'queued', 'preparing', 'sending', 'sent', 'uncertain', 'revoked', 'expired', 'failed', 'waiting_first', 'waiting_ack', 'claimed', 'thank_sending', 'blocking', 'completed', 'superseded', 'prepared', 'publishing', 'reviewed', 'consumed','recipient_pending','resolving','recipient_not_found','recipient_ambiguous','provider_unavailable','awaiting_preview','plan_reviewed'})
 
 
@@ -41,7 +41,19 @@ def project_pending(data):
     followup = latest.get('followup') if isinstance(latest, dict) else None
     mission=data.get('mission') if isinstance(data.get('mission'),dict) else {}
     reason=mission.get('reason')
-    return {'mission_present':bool(mission),
+    raw_intake=data.get('intake') if isinstance(data.get('intake'),dict) else None
+    intake=None
+    if raw_intake is not None:
+        kinds=('mission','task','preparation','dictation','context_plan','denied')
+        reasons=('SOURCE_REGISTERED','NO_EXECUTABLE_INTENT','VOICE_INTENT_NOT_ADMITTED','VOICE_TIMEOUT','VOICE_UNCLEAR','VOICE_WORKER_UNAVAILABLE','VOICE_TRANSCRIPTION_FAILED','VOICE_REQUEST_REFUSED','UNSUPPORTED_FOLLOWUP','PROCESS_RESTART')
+        intake={'type':'voice' if raw_intake.get('type')=='voice' else 'unknown',
+                'fresh':raw_intake.get('fresh') is True,
+                'state':raw_intake.get('state') if raw_intake.get('state') in ('processing','complete','failed','uncertain') else 'unknown',
+                'has_send_request':raw_intake.get('has_send_request') is True,
+                'source_registered':raw_intake.get('source_registered') is True,
+                'registered_kind':raw_intake.get('registered_kind') if raw_intake.get('registered_kind') in kinds else None,
+                'reason':raw_intake.get('reason') if raw_intake.get('reason') in reasons else 'unknown'}
+    return {'intake':intake,'mission_present':bool(mission),
             'mission_state':safe_state(mission.get('state')),
             'mission_reason':reason if reason in ('','CONTACT_PROVIDER_UNAVAILABLE','PROVIDER_AUTH_REFRESH_REQUIRED','CONTACT_RESULTS_INCOMPLETE','CONTACT_PROVIDER_RESULT_INVALID','MISSION_PLAN_NOT_AVAILABLE') else 'unknown',
             'mission_revision':mission.get('revision') if type(mission.get('revision')) is int and 0<mission['revision']<100000 else None,

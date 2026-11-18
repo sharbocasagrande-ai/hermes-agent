@@ -1,6 +1,6 @@
-# RC10 candidato: missão, agenda e aceite
+# RC10 e RC10.1: missão, agenda e aceite
 
-Revisão 2026-11-18. Produção observada: RC9.1. O candidato não está implantado. Não confundir resultado isolado, código carregado e efeito no canal real.
+Revisão 2026-11-18. O preparo original partiu da RC9.1; a configuração de referência foi instalada em RC10 e corrigida para RC10.1 após uma falha real de admissão. Isso não comprova aceite em qualquer host. Não confundir teste isolado, código carregado e efeito no canal real. Ler [voz nativa e admissão](voz-nativa-e-admissao-rc10-1.md).
 
 ## O que muda
 
@@ -8,11 +8,11 @@ A missão conserva a fonte nativa, corpo/objetivo, identificação, versão e pr
 
 `whatsapp_resolver_missao` recebe apenas `mission_id`. Só usar após confirmar o sexto contrato no plugin e `ownerMissionProtocol=1` / `ownerContactProviderProtocol=1` na ponte ativa. O estado minimizado da missão não é comprovante de envio. Preparação de texto a compor usa o mecanismo existente; não chamar envio livre. Em falha OAuth, a conexão normal do Hermes mantém a renovação e pode preceder uma única tentativa protegida, dentro do prazo; não criar gerenciador paralelo ou copiar refresh token.
 
-## Integração proposta
+## Integração e implantação verificada
 
 O serviço WhatsApp conserva o sandbox existente. Um leitor local separado executa sob o proprietário da credencial, sem rede, com código administrativo imutável, fonte read-only e socket Unix com verificação Linux de identidade do cliente. Projeta somente o access token vigente e sua expiração; não exporta refresh, grava nova credencial, escolhe ferramenta ou altera ACLs da credencial. O cliente protegido consulta HTTPS Composio fixo e a conta de contatos fixada pelo administrador. Mudanças de arquivo atômicas são lidas novamente. Expiração ou revogação falham sem envio.
 
-O leitor é componente novo e exige implantação administrativa do pacote concreto. Sua existência no pacote não comprova serviço ativo. Preservar sessão, comando exclusivo, conta pessoal de monitoramento, grupos desabilitados e banco atual de efeitos. Reversão restaura código/contexto por comparação, nunca um banco antigo sobre comprovantes novos.
+Quando o leitor ainda não estiver instalado, sua implantação é administrativa e depende do acesso autorizado ao pacote concreto. Uma implantação já autorizada não pede nova permissão por ler esta referência. Sua existência no pacote não comprova serviço ativo. Preservar sessão, comando exclusivo, conta pessoal de monitoramento, grupos desabilitados e banco atual de efeitos. Reversão restaura código/contexto por comparação, nunca um banco antigo sobre comprovantes novos.
 
 ## Evidência e limites
 
