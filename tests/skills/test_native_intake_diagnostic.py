@@ -21,4 +21,6 @@ class NativeIntakeDiagnosticTests(unittest.TestCase):
  def test_runtime_revision_is_observed_and_not_inferred_from_protocol(self):
   self.assertEqual(m.project_health({'capabilities':{'ownerStructuredRequestProtocol':1,'ownerStructuredRequestRevision':3}})['structured_request_revision'],3)
   for bad in [None,True,'3',-1,100000]:self.assertIsNone(m.project_health({'capabilities':{'ownerStructuredRequestRevision':bad}})['structured_request_revision'])
+ def test_recipient_clarification_is_a_preserved_mission_not_a_technical_refusal(self):
+  x=m.project_pending({'mission':{'state':'recipient_pending','reason':'RECIPIENT_REQUIRED','query':'PRIVATE_QUERY','text':'PRIVATE_TEXT'}});self.assertTrue(x['mission_present']);self.assertEqual(x['mission_reason'],'RECIPIENT_REQUIRED');self.assertNotIn('PRIVATE_',json.dumps(x))
 if __name__=='__main__':unittest.main()

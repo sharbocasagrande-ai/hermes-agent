@@ -59,7 +59,7 @@ def project_pending(data):
                 'reason':raw_intake.get('reason') if raw_intake.get('reason') in reasons else 'unknown'}
     return {'intake':intake,'mission_present':bool(mission),
             'mission_state':safe_state(mission.get('state')),
-            'mission_reason':reason if reason in ('','CONTACT_PROVIDER_UNAVAILABLE','PROVIDER_AUTH_REFRESH_REQUIRED','CONTACT_RESULTS_INCOMPLETE','CONTACT_PROVIDER_RESULT_INVALID','MISSION_PLAN_NOT_AVAILABLE') else 'unknown',
+            'mission_reason':reason if reason in ('','RECIPIENT_REQUIRED','CONTACT_PROVIDER_UNAVAILABLE','PROVIDER_AUTH_REFRESH_REQUIRED','CONTACT_RESULTS_INCOMPLETE','CONTACT_PROVIDER_RESULT_INVALID','MISSION_PLAN_NOT_AVAILABLE') else 'unknown',
             'mission_revision':mission.get('revision') if type(mission.get('revision')) is int and 0<mission['revision']<100000 else None,
             'mission_candidate_count':mission.get('candidate_count') if type(mission.get('candidate_count')) is int and 0<=mission['candidate_count']<30 else None,
             'pending_by_state': counts,

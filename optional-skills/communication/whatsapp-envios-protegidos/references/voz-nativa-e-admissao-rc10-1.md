@@ -1,3 +1,15 @@
+# Preparação recuperável e revisão nativa — RC10.4
+
+O novo áudio depois da RC10.3 ainda não virou tarefa. A transcrição protegida usou tenta novamente mandar e mensagem para o contato de Boa Tarde, sem dizendo, seguida de uma restrição e repetição de enviar somente a mesma mensagem. O defeito estava no seletor do comando e na ausência de uma passagem para preparação quando não havia fronteira literal reconhecida.
+
+A RC10.4 distingue corpo literal, corpo candidato que exige revisão nativa e objetivo ainda não delimitado. Uma saudação introduzida por de pode gerar um plano para prévia, com destinatário identificado e corpo limpo, sem virar ditado direto ou comando /enviar. A revisão é obrigatória também quando o alias já é conhecido. A restrição redundante da mesma mensagem e do mesmo pronome não integra o corpo; outra pessoa, mensagem ou operação não recebe esse tratamento.
+
+Se há envelope direto e prosa, mas a fronteira do destinatário é insegura, a origem autenticada permanece numa missão de preparação com query vazia. RECIPIENT_REQUIRED solicita somente o nome em uma pergunta nativa vinculada. Não consultar a agenda com query vazia ou texto misturado; não criar tarefa externa antes da identificação, prévia e confirmação correspondentes. Alias já registrado só é reconhecido na cláusula do destinatário, nunca em citação ou prosa posterior. Continuar a missão atual, sem pedir toda a ordem novamente.
+
+Tenta novamente em um evento novo não rearma uma origem recusada, expirada ou consumida. As barreiras de remetente, atualidade, encaminhamento, negação, hipótese, narrativa, múltiplos comandos, revogação, idempotência e incerteza continuam aplicáveis. Aprovações antigas de rascunho mantêm seu contrato. Conferir revisão estrutural 4 e hash ativos; teste simulado ou análise pura da fonte histórica não é envio real.
+
+## Histórico RC10.3 preservado
+
 # Descritor da mensagem e instrução restritiva — RC10.3
 
 Após a RC10.2-fix1, um novo pedido real ainda recebeu VOICE_INTENT_NOT_ADMITTED. A transcrição de leitura usou “mensagem de texto” e “E, somente isso, mande somente essa mensagem e não responda mais nada”. Essas construções não eram cobertas. Não tratar a revisão anterior nem seus testes como aceite desse pedido.
