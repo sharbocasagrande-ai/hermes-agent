@@ -1,3 +1,15 @@
+# Descritor da mensagem e instrução restritiva — RC10.3
+
+Após a RC10.2-fix1, um novo pedido real ainda recebeu VOICE_INTENT_NOT_ADMITTED. A transcrição de leitura usou “mensagem de texto” e “E, somente isso, mande somente essa mensagem e não responda mais nada”. Essas construções não eram cobertas. Não tratar a revisão anterior nem seus testes como aceite desse pedido.
+
+A RC10.3 reconhece o descritor de texto no envelope comum e delimita a cauda restritiva como metadado de envio único, sem acompanhamento ou bloqueio. Descritor desconhecido preserva preparação com destino e prévia, sem conceder execução direta; controle ambíguo também exige preparação. Conteúdo deliberadamente citado fica literal. Gramática comum não implica aceitação de qualquer frase.
+
+Conferir ownerStructuredRequestRevision=3, release e hash ativos. A reprodução Linux passou em 351 testes Node e oito do atualizador. O teste de análise pura da fonte recusada lê a transcrição protegida, sem criar origem nem tarefa, alterar validade ou executar mensagem. Aceite real exige novo evento nativo depois da instalação e seu próprio comprovante.
+
+No diagnóstico, correlacionar intake.stamp com a nova ordem. fresh=false pode ser o pedido mais recente que expirou enquanto se investigava; não demonstra que ele pertence a outra tentativa nem permite ignorar uma falha nova. Registrar timestamp, estado, razão e vínculo à tarefa. A revisão da skill preserva o stamp mínimo e a revisão estrutural sem exportar corpo, destinatário ou autenticação.
+
+## Histórico RC10.2 preservado
+
 # Análise estrutural comum — RC10.2
 
 Usar a capacidade ownerStructuredRequestProtocol=1 para identificar a correção instalada. A RC10.1 transcrevia o novo áudio, detectava envio e ainda recusava a admissão por gramáticas diferentes nos caminhos de missão, plano e ditado. O decoder protegido deste incidente já tinha o vocativo Shar; a variante de leitura Char não era a causa real desse áudio.
@@ -20,7 +32,7 @@ Use quando o titular deu uma ordem no celular e o modelo a compreendeu, mas a mi
 
 ## Fonte e diagnóstico
 
-Confirmar `ownerNaturalUtteranceProtocol=1` e a release/hash carregados. Consultar `intake` e `mission` pela ponte existente. `intake` distingue estado da decodificação, presença de pedido de envio, fonte admitida, tipo de registro e motivo da recusa. `fresh=false` é histórico; não tratá-lo como a ordem corrente. Um ditado admitido pode existir antes da tarefa e precisa continuar visível. Não usar `latestTask` antigo como recibo do pedido novo.
+Confirmar `ownerNaturalUtteranceProtocol=1` e a release/hash carregados. Consultar `intake` e `mission` pela ponte existente. `intake` distingue estado da decodificação, presença de pedido de envio, fonte admitida, tipo de registro e motivo da recusa. `fresh=false` significa que a validade passou; correlacionar o timestamp com a ordem antes de classificá-la como alheia à tentativa atual. Um ditado admitido pode existir antes da tarefa e precisa continuar visível. Não usar `latestTask` antigo como recibo do pedido novo.
 
 Na versão administrativa corrigida, uma instrução direta pode vir depois de um preâmbulo conversacional. A seleção considera apenas conteúdo nativo autenticado e não interpreta comando em citação, hipótese, narrativa de terceiro ou negação. Ela não cria autoridade a partir da transcrição entregue pelo modelo. Escopo não compreendido fica em preparação para plano completo ou gera falha técnica explícita; não copiar instruções de acompanhamento para o corpo inicial nem alegar falta de consentimento.
 

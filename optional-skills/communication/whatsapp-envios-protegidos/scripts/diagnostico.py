@@ -24,6 +24,8 @@ def project_health(data):
     result = {'status': state if state in ('connected', 'disconnected', 'connecting', 'closed') else 'unknown'}
     caps = data.get('capabilities') or {}
     result['capabilities'] = {k: caps.get(k) == 1 for k in CAPS}
+    revision = caps.get('ownerStructuredRequestRevision')
+    result['structured_request_revision'] = revision if type(revision) is int and 0 < revision < 100000 else None
     digest = data.get('scriptHash')
     if isinstance(digest, str) and re.fullmatch('[a-f0-9]{16,64}', digest):
         result['script_hash'] = digest
@@ -46,7 +48,9 @@ def project_pending(data):
     if raw_intake is not None:
         kinds=('mission','task','preparation','dictation','context_plan','denied')
         reasons=('SOURCE_REGISTERED','NO_EXECUTABLE_INTENT','VOICE_INTENT_NOT_ADMITTED','VOICE_TIMEOUT','VOICE_UNCLEAR','VOICE_WORKER_UNAVAILABLE','VOICE_TRANSCRIPTION_FAILED','VOICE_REQUEST_REFUSED','UNSUPPORTED_FOLLOWUP','PROCESS_RESTART')
-        intake={'type':'voice' if raw_intake.get('type')=='voice' else 'unknown',
+        stamp = raw_intake.get('stamp')
+        intake={'stamp':stamp if type(stamp) is int and 0 < stamp < 10000000000 else None,
+                'type':'voice' if raw_intake.get('type')=='voice' else 'unknown',
                 'fresh':raw_intake.get('fresh') is True,
                 'state':raw_intake.get('state') if raw_intake.get('state') in ('processing','complete','failed','uncertain') else 'unknown',
                 'has_send_request':raw_intake.get('has_send_request') is True,

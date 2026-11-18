@@ -14,4 +14,11 @@ class NativeIntakeDiagnosticTests(unittest.TestCase):
  def test_structured_protocol_is_observed_not_assumed(self):
   self.assertFalse(m.project_health({})['capabilities']['ownerStructuredRequestProtocol'])
   self.assertTrue(m.project_health({'capabilities':{'ownerStructuredRequestProtocol':1}})['capabilities']['ownerStructuredRequestProtocol'])
+ def test_expired_new_order_keeps_native_stamp_without_private_content(self):
+  x=m.project_pending({'intake':{'type':'voice','stamp':1795027279,'fresh':False,'state':'complete','reason':'VOICE_INTENT_NOT_ADMITTED','transcript':'PRIVATE_BODY','inbound':'PRIVATE_OWNER'}})
+  self.assertEqual(x['intake']['stamp'],1795027279);self.assertFalse(x['intake']['fresh']);self.assertNotIn('PRIVATE_',json.dumps(x))
+  for bad in [True,'1795027279',-1,10000000000]:self.assertIsNone(m.project_pending({'intake':{'stamp':bad}})['intake']['stamp'])
+ def test_runtime_revision_is_observed_and_not_inferred_from_protocol(self):
+  self.assertEqual(m.project_health({'capabilities':{'ownerStructuredRequestProtocol':1,'ownerStructuredRequestRevision':3}})['structured_request_revision'],3)
+  for bad in [None,True,'3',-1,100000]:self.assertIsNone(m.project_health({'capabilities':{'ownerStructuredRequestRevision':bad}})['structured_request_revision'])
 if __name__=='__main__':unittest.main()

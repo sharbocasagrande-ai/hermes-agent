@@ -106,4 +106,4 @@ Em `UNSUPPORTED_FOLLOWUP` ou controles incluídos no literal, conferir `ownerFol
 
 ## Admissão da fala na RC10.1
 
-Ler [voz nativa, admissão e grafia](voz-nativa-e-admissao-rc10-1.md) quando o áudio chegou e foi transcrito mas não há missão. `intake.fresh`, estado e motivo distinguem uma falha atual de dado histórico; um ditado admitido precede a tarefa. A sugestão de grafia continua sujeita à prévia nativa. Não trocar IDs, fontes ou proprietários para corrigir o reconhecimento.
+Ler [voz nativa, admissão e grafia](voz-nativa-e-admissao-rc10-1.md) quando o áudio chegou e foi transcrito mas não há missão. `intake.stamp`, `intake.fresh`, estado e motivo permitem correlacionar a tentativa; expiração não identifica sozinha uma tentativa antiga; um ditado admitido precede a tarefa. A sugestão de grafia continua sujeita à prévia nativa. Não trocar IDs, fontes ou proprietários para corrigir o reconhecimento.
