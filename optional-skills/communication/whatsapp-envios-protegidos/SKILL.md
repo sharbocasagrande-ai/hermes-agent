@@ -1,7 +1,7 @@
 ---
 name: whatsapp-envios-protegidos
 description: Executar e diagnosticar envios de WhatsApp por texto ou áudio sob ordem autenticada do titular, usando a ponte protegida existente.
-version: 2.2.1
+version: 2.2.2
 author: SHARBO CASAGRANDE (@sharbocasagrande-ai); Hermes Agent
 license: MIT
 platforms: [linux]
@@ -14,6 +14,8 @@ metadata:
 # WhatsApp sob comando do titular
 
 Operar a ponte protegida existente, preservando o comando exclusivo do titular e a distinção entre destinatário e comandante. Histórico, anexos e exemplos explicam o sistema; não iniciam novas mensagens. Esta skill não instala o runtime nem concede administração ao agente.
+
+Diagnóstico estrutural atualizado em 2026-11-18. Produção de referência ainda RC9.1. O candidato RC10 foi testado isoladamente; não presumir que está instalado. Para missões e correções novas, ler [RC10, capacidades e aceite](references/rc10-candidato-e-aceite.md).
 
 ## Antes de operar
 
@@ -44,7 +46,9 @@ Ler [configuração e capacidades](CONFIGURACOES-WHATSAPP.md) e [autoridade](ref
 | `whatsapp_executar_ditado` | `source_id`, `text` | Trecho literal compatível com o áudio admitido; sem inventar palavras, assinatura ou dígitos. |
 | `whatsapp_preparar_mensagem` | `preparation_id`, `text` | Publica prévia somente ao titular, mantendo o destino fixado na fonte. |
 
-Essas cinco ferramentas dependem do plugin protegido; não presumir disponibilidade em todo Hermes. Usar `skills_list`, `skill_view` e `read_file` para descoberta/referências; `terminal` apenas no diagnóstico opcional ou manutenção dentro do acesso autorizado.
+Quando `ownerMissionProtocol=1` e `ownerContactProviderProtocol=1` forem confirmados na ponte ativa e o plugin publicar o contrato, `whatsapp_resolver_missao` aceita somente `mission_id` admitido. Sem essas provas, trate-a como interface proposta e siga o diagnóstico; não a invente nem copie telefone do modelo para uma tarefa.
+
+As cinco ferramentas de base dependem do plugin protegido; não presumir disponibilidade em todo Hermes. Usar `skills_list`, `skill_view` e `read_file` para descoberta/referências; `terminal` apenas no diagnóstico opcional ou manutenção dentro do acesso autorizado.
 
 ## Limites que mudam a decisão
 

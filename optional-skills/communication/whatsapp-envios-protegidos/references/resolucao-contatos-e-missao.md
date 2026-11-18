@@ -15,7 +15,7 @@
 - Revalide regressões antigas na versão atual. Não assumir que o defeito de uma release persiste: suporte a escreve e separação de ressalvas podem ter sido corrigidos, enquanto resolução de contato ou semântica de bloqueio continuam pendentes.
 - Teste bloquear respostas/encerrar separadamente de bloquear o contato. Atualizar a skill não muda o parser que executa ordens nativas antes do modelo.
 
-## Requisitos da proposta de correção
+## Contrato candidato e requisitos de correção
 
 - Preserve uma missão nativa aguardando identificação em vez de exigir a repetição de todo o pedido. Vincule correções/confirmadores ao contexto autenticado e defina concorrência, validade, revogação e recuperação.
 - Proponha resolução de candidato com procedência verificável pelo backend; resultado livre do modelo não é prova. Número completo fornecido pelo titular e candidato de provider autorizado são caminhos diferentes e precisam de validação própria.
@@ -23,3 +23,11 @@
 - Mantenha idempotência no limite do efeito, não só na criação do plano; não recupere timeout por novo envio. Rollback deve preservar recibos de efeitos já ocorridos.
 - Documente novas interfaces como propostas, não como ferramentas instaladas. Mudanças do serviço, guardas ou configuração dependem de aprovação e executor administrativo autorizado.
 - Entregue relatório e reprodução em anexo na pasta autorizada, com dados mínimos. Não publique fonte privada, credenciais ou conversas brutas. Não reexecute testes históricos para provar a correção.
+
+## Estado do candidato em 2026-11-18
+
+O candidato RC10 conserva missão por fonte/revisão, consulta a agenda por MCP fixo e conta fixada pelo administrador, e recusa prova/telefone/query fornecidos pelo modelo. A correção curta mantém o corpo; a escolha Contato N precisa da pergunta nativa correspondente. O contexto de voz é capturado na chegada, revalidado depois do decoder e não sobrevive a mudança de revisão. Resultados tardios não trocam o alvo corrigido. Nomes exatos e telefone canônico são exigidos; ausência de correspondência pede refinamento, sem adivinhar dígitos. O transporte ainda verifica o WhatsApp antes do efeito.
+
+`mission` deve ser a referência da ordem corrente. O candidato esconde preparação/plano/último recibo alheios, rejeita confirmação nova de draft consumido e conserva replay da mesma fonte. Fonte expirada não renova por consulta: uma nova ordem nativa “Retome a missão” cria nova fonte e prévia, sem executar automaticamente. Pausa, cancelamento e reinício revogam pendências. Efeitos já enviados não são apagados.
+
+Esse comportamento ainda precisa de implantação e aceite real por nova ordem do titular. Ler [RC10 e aceite](rc10-candidato-e-aceite.md); não tratar os testes isolados como mensagem enviada.

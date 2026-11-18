@@ -1,6 +1,6 @@
 # Configurações do WhatsApp — envio e resposta sob ordem do titular
 
-Versão da skill: 2.2.1, revisão em 2026-11-17. Contrato de referência: RC9.1, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.
+Versão da skill: 2.2.2, revisão em 2026-11-18. Contrato de referência: RC9.1, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.
 
 ## Regra central
 
@@ -60,3 +60,7 @@ O Hermes pode apresentar as ferramentas do plugin por catálogo sob demanda: des
 A extração compartilhada reconhece escreve/escreva e separa resposta literal, bloqueio e encerramento; falha segura em controles desconhecidos ou conflitantes. [Contrato e semântica do término](references/rc9-1-e-semantica-do-termino.md) descreve os limites. Encerrar respostas não bloqueia a pessoa; a documentação não muda retroativamente a interpretação do parser nem desfaz efeitos.
 
 O diagnóstico pode ler apenas metadados da conversa Hermes em `state.db` pelo usuário operacional, sem exportar prompt, histórico ou conteúdo. Isso é distinto da sessão secreta de autenticação WhatsApp, que permanece inacessível.
+
+## Atualização estrutural de 2026-11-18
+
+O diagnóstico com 12 sondagens reproduzidas confirmou lacunas de missão, ligação à agenda, correção curta e confirmação composta na RC9.1. O candidato RC10 e seu novo leitor local OAuth estão em preparação/validação; a skill 2.2.2 não os instala. Conferir capacidades ativas e recibo administrativo antes de chamar a nova interface. [Contrato candidato e aceite](references/rc10-candidato-e-aceite.md).

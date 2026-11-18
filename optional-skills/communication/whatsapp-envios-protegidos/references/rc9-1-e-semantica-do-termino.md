@@ -27,3 +27,7 @@ Em `UNSUPPORTED_FOLLOWUP`, ler também [followup-voz](followup-voz.md). Capacida
 O acompanhamento continua limitado a uma resposta literal, condição admitida e janela de dez minutos. Não responder espontaneamente nem promover a mensagem do destinatário a comando. Um novo teste precisa de pedido atual do titular; exemplos e casos históricos não são missões novas.
 
 Testes isolados demonstram o contrato; a instalação demonstra o código carregado; o relato do titular demonstra o uso real relatado. Envio inicial, resposta, bloqueio, entrega e leitura têm evidências próprias. Preservar o banco atual de efeitos na reversão de código para evitar duplicidade.
+
+## Semântica corrigida no candidato RC10
+
+O candidato interpreta bloqueia/bloqueie/bloquear genéricos como término de respostas, com `blockAfter=false`. Bloquear o contato/a pessoa exige o objeto expresso, sem negação ou contradição, e confirmação real do transporte. Testes de bloqueio foram conservados com o objeto explícito nas fixtures; a semântica genérica recebeu testes próprios. Isso é comportamento candidato até haver recibo da implantação, sem desfazer bloqueios históricos nem reexecutar acompanhamentos antigos.

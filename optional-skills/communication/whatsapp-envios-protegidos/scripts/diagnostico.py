@@ -10,8 +10,8 @@ import sqlite3
 
 ROUTES = frozenset({'/health', '/owner-task/pending'})
 TOOLS = frozenset({'whatsapp_envio_pontual', 'whatsapp_estado_envio', 'whatsapp_consultar_envios', 'whatsapp_preparar_mensagem', 'whatsapp_executar_ditado'})
-CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol', 'ownerContextPlanProtocol', 'ownerFollowupSpeechProtocol')
-STATES = frozenset({'authorized', 'queued', 'preparing', 'sending', 'sent', 'uncertain', 'revoked', 'expired', 'failed', 'waiting_first', 'waiting_ack', 'claimed', 'thank_sending', 'blocking', 'completed', 'superseded', 'prepared', 'publishing', 'reviewed', 'consumed'})
+CAPS = ('ownerTaskProtocol', 'ownerAudioProtocol', 'ownerVoiceActionProtocol', 'ownerDictationProtocol', 'ownerAckFlowProtocol', 'ownerDirectedProtocol', 'ownerContextPlanProtocol', 'ownerFollowupSpeechProtocol', 'ownerMissionProtocol', 'ownerContactProviderProtocol')
+STATES = frozenset({'authorized', 'queued', 'preparing', 'sending', 'sent', 'uncertain', 'revoked', 'expired', 'failed', 'waiting_first', 'waiting_ack', 'claimed', 'thank_sending', 'blocking', 'completed', 'superseded', 'prepared', 'publishing', 'reviewed', 'consumed','recipient_pending','resolving','recipient_not_found','recipient_ambiguous','provider_unavailable','awaiting_preview','plan_reviewed'})
 
 
 def safe_state(value):
@@ -39,7 +39,14 @@ def project_pending(data):
         state = safe_state(task.get('state')) if isinstance(task, dict) else 'unknown'
         counts[state] = counts.get(state, 0) + 1
     followup = latest.get('followup') if isinstance(latest, dict) else None
-    return {'pending_by_state': counts,
+    mission=data.get('mission') if isinstance(data.get('mission'),dict) else {}
+    reason=mission.get('reason')
+    return {'mission_present':bool(mission),
+            'mission_state':safe_state(mission.get('state')),
+            'mission_reason':reason if reason in ('','CONTACT_PROVIDER_UNAVAILABLE','PROVIDER_AUTH_REFRESH_REQUIRED','CONTACT_RESULTS_INCOMPLETE','CONTACT_PROVIDER_RESULT_INVALID','MISSION_PLAN_NOT_AVAILABLE') else 'unknown',
+            'mission_revision':mission.get('revision') if type(mission.get('revision')) is int and 0<mission['revision']<100000 else None,
+            'mission_candidate_count':mission.get('candidate_count') if type(mission.get('candidate_count')) is int and 0<=mission['candidate_count']<30 else None,
+            'pending_by_state': counts,
             'context_plan_present': isinstance(data.get('plan'), dict),
             'context_plan_state': safe_state(data.get('plan', {}).get('state')) if isinstance(data.get('plan'), dict) else None,
             'dictated_sources': len(data.get('dictated')) if isinstance(data.get('dictated'), list) else 0,
@@ -68,6 +75,8 @@ def inspect_sessions(profile):
                            'snapshot_alone_diagnoses_tool_absence': False,
                            'protected_tools_complete': TOOLS <= names,
                            'protected_tools_present': len(TOOLS & names),
+                           'mission_resolver_in_snapshot':'whatsapp_resolver_missao' in names,
+                           'administrative_policy_rc10_present':'shar-whatsapp-policy-rc10:start' in text,
                            'administrative_policy_rc8_present': 'shar-whatsapp-policy-rc8:start' in text,
                            'obsolete_policy_marker_present': 'shar-whatsapp-policy-20261110:start' in text})
     return {'status': 'read', 'active_whatsapp_sessions': len(result), 'sessions': result}

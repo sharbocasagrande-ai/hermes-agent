@@ -61,3 +61,7 @@ Uma pergunta livre do modelo seguida de “Isso” não substitui esse fluxo. Se
 ## 8. Aceite e limite da evidência
 
 Testar: caminho nativo e via ferramenta; confirmação textual e áudio; resposta diferente que não dispara; condição correta que dispara uma vez; ausência/expiração/revogação/consumo; alteração de plano/destinatário; terceiro/eco/grupo/encaminhamento; replay; timeout; restart; histórico preservado. Fixtures isoladas não comprovam o teste real no WhatsApp do titular.
+
+## Confirmação composta e validade no candidato RC10
+
+Na RC9.1, “Esse mesmo, pode enviar” e a variante em duas linhas não são reconhecidos como confirmação composta. No candidato RC10, o texto inteiro é aceito apenas no plano íntegro atual, com vínculo do mesmo titular/chat, publicação comprovada, prazo de dois minutos e prazo original da missão ainda válido. “Esse mesmo” sozinho, pergunta, negação, narrativa e texto adicional não autorizam. A correção só de regex não resolve uma missão sem fonte/plano. Conferir instalação antes de prometer esse fluxo.
