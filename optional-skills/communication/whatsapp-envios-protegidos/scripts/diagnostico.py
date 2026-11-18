@@ -67,6 +67,7 @@ def project_pending(data):
             'context_plan_state': safe_state(data.get('plan', {}).get('state')) if isinstance(data.get('plan'), dict) else None,
             'dictated_sources': len(data.get('dictated')) if isinstance(data.get('dictated'), list) else 0,
             'preparation_present': isinstance(data.get('preparation'), dict),
+            'preparation_review_required': isinstance(data.get('preparation'),dict) and data['preparation'].get('reviewRequired') is True,
             'latest_state': safe_state(latest.get('state')) if isinstance(latest, dict) else 'unknown',
             'latest_has_receipt': isinstance(latest, dict) and bool(latest.get('result_id')),
             'followup_state': safe_state(followup.get('state')) if isinstance(followup, dict) else None,

@@ -1,6 +1,10 @@
 # Configurações do WhatsApp — envio e resposta sob ordem do titular
 
-Versão da skill: 2.2.7, revisão em 2026-11-18. Contrato de referência: RC10.4, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, `ownerNaturalUtteranceProtocol=1`, `ownerStructuredRequestProtocol=1`, `ownerStructuredRequestRevision=4`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.
+Versão da skill: 2.2.8, revisão em 2026-11-18. Contrato de referência: RC10.5, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, `ownerNaturalUtteranceProtocol=1`, `ownerStructuredRequestProtocol=1`, `ownerStructuredRequestRevision=5`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.
+
+## Revisão de escopo
+
+Revisão estrutural 5 distingue recusa de segurança de preparação que exige revisão. Preâmbulo positivo desconhecido conserva o objetivo completo, sem envio direto. `reviewRequired=true` exige plano completo, prévia nativa com limite de WhatsApp e confirmação vinculada; não significa manutenção administrativa realizada. A ponte impede acompanhamento ou bloqueio acrescentados pela proposta. Política do titular e demais limites permanecem vigentes.
 
 ## Regra central
 

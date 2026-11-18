@@ -1,3 +1,19 @@
+# Classificação e revisão de escopo — RC10.5
+
+O novo áudio com RC10.4 ativa misturou pedido de revisão da VPS com envio futuro a um contato. O decoder protegido confirmou a recusa de admissão. A falha era confundir preâmbulo positivo desconhecido com recusa de segurança. Outra seleção antiga descartava qualquer prefixo terminado em pontuação; esse atalho foi removido. Não interpretar uma oração futura isolada como envio direto nem afirmar que a manutenção antecedente ocorreu.
+
+Na RC10.5, origem atual do titular com um único pedido positivo e preâmbulo desconhecido pode criar somente preparação de revisão. O objetivo completo é retido; a seleção do comando auxilia a delimitação, sem apagar a precondição. Nome identificado por alias ou agenda segue os mesmos limites. Negação, hipótese, narrativa, citação, múltiplos comandos, origem externa, encaminhamento e fonte antiga continuam recusados. Não existe aceitação universal de linguagem natural.
+
+Com `reviewRequired=true`, propor o plano completo pela ferramenta existente: uma linha `Mensagem: “texto”` e outra `Acompanhamento: nenhum` ou condição/resposta/término reconhecidos na fonte. A ponte exige esse formato, vincula a revisão ao digest da origem autenticada, sela seu objetivo e restringe o acompanhamento ao escopo nativo. Uma proposta não pode acrescentar resposta, bloqueio, condição ou prazo ausentes ou distintos da origem. A antiga captura de prévia em prosa é desabilitada para essa preparação.
+
+A prévia nativa ao titular declara que cobre somente a mensagem e o acompanhamento mostrados, que não executou manutenção da VPS ou outras ações do preâmbulo, e que confirmar autoriza somente aquele plano. O agente operacional não deve executar nem alegar essa manutenção. O dono pode revisar a pessoa e o texto e confirmar no vínculo nativo atual; isso não cria uma permissão administrativa ou outra tarefa. Não enviar explicação extra depois da prévia, pois pode interromper sua confirmação implícita.
+
+A restrição final “apenas isso e não responda nenhuma mensagem dele” é metadado de envio único, sem resposta nem bloqueio, e fica fora do corpo. Não confundir o “me responda com OK” deliberadamente enviado no texto com autorização de resposta pelo agente. Testes antigos de preâmbulo livre passaram a exigir plano completo e confirmação nativa, mantendo a verificação de idempotência, resposta única e bloqueio somente quando pedido.
+
+Conferir revisão estrutural 5 e release/hash ativos. A fonte recusada do incidente só pode servir à análise pura; não registrá-la ou renová-la para execução. Testes simulados e implantação não substituem uma nova ordem real e seu próprio comprovante.
+
+## Histórico RC10.4 preservado
+
 # Preparação recuperável e revisão nativa — RC10.4
 
 O novo áudio depois da RC10.3 ainda não virou tarefa. A transcrição protegida usou tenta novamente mandar e mensagem para o contato de Boa Tarde, sem dizendo, seguida de uma restrição e repetição de enviar somente a mesma mensagem. O defeito estava no seletor do comando e na ausência de uma passagem para preparação quando não havia fronteira literal reconhecida.

@@ -23,4 +23,7 @@ class NativeIntakeDiagnosticTests(unittest.TestCase):
   for bad in [None,True,'3',-1,100000]:self.assertIsNone(m.project_health({'capabilities':{'ownerStructuredRequestRevision':bad}})['structured_request_revision'])
  def test_recipient_clarification_is_a_preserved_mission_not_a_technical_refusal(self):
   x=m.project_pending({'mission':{'state':'recipient_pending','reason':'RECIPIENT_REQUIRED','query':'PRIVATE_QUERY','text':'PRIVATE_TEXT'}});self.assertTrue(x['mission_present']);self.assertEqual(x['mission_reason'],'RECIPIENT_REQUIRED');self.assertNotIn('PRIVATE_',json.dumps(x))
+ def test_scope_review_is_minimized_without_exporting_native_objective(self):
+  x=m.project_pending({'preparation':{'reviewRequired':True,'objective':'PRIVATE_OBJECTIVE','preparationId':'PRIVATE_ID','recipient_name':'PRIVATE_PERSON'}});self.assertTrue(x['preparation_review_required']);self.assertNotIn('PRIVATE_',json.dumps(x))
+  for bad in [None,False,'true',1]:self.assertFalse(m.project_pending({'preparation':{'reviewRequired':bad}})['preparation_review_required'])
 if __name__=='__main__':unittest.main()
