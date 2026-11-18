@@ -1,3 +1,19 @@
+# Análise estrutural comum — RC10.2
+
+Usar a capacidade ownerStructuredRequestProtocol=1 para identificar a correção instalada. A RC10.1 transcrevia o novo áudio, detectava envio e ainda recusava a admissão por gramáticas diferentes nos caminhos de missão, plano e ditado. O decoder protegido deste incidente já tinha o vocativo Shar; a variante de leitura Char não era a causa real desse áudio.
+
+A referência ao canal “mensagem do WhatsApp/no WhatsApp”, o envelope “celular/telefone de/do/da” e o aposto “meu filho” são elementos estruturais do pedido. Só o nome isolado segue à agenda. Parentesco não autentica o titular nem identifica automaticamente uma pessoa. O vocativo Char pode ser reconhecido como chamada sem reescrever o corpo literal e sem conceder autoridade.
+
+Uma análise comum delimita nome, corpo, acompanhamento e restrições. “Não responda nada a ele” e ressalvas finais reconhecidas de segurança/autonomia ficam fora do texto do contato; ausência de acompanhamento mantém envio único, sem resposta posterior ou bloqueio. Ambiguidade permanece em preparação para prévia, nunca em envio com controles misturados. Palavras de controle citadas deliberadamente no corpo permanecem literais. Não reparar a grafia do corpo por conta própria.
+
+Na RC10.2 inicial, 341 testes Node e oito do atualizador passaram no Linux, incluindo a frase nativa conferida, os dez casos fornecidos, variantes combinadas e caminhos com alias/agenda, além de replay, origem antiga, destinatário sem comando, citações e negações. A busca continua presa ao provedor e à procedência existentes; não há nova autorização para executar o áudio histórico. Testes simulados não são aceite real.
+
+O atualizador preserva também as linhas nativas de voz/origem e recusa a troca durante decodificação ou efeito ativo. Exigir novo pedido nativo depois da implantação para comprovar missão/tarefa e seu próprio recibo.
+
+A revisão final fix1 passou em 343 testes Node e oito do instalador. Acrescenta a guarda de cauda desconhecida fora de corpo citado e a preparação para citação sem fechamento, conservando a recusa anterior e a literalidade. A skill 2.2.5 corrige também o cabeçalho portátil e deixa explícita a natureza histórica da preparação RC10.
+
+## Histórico RC10.1 preservado
+
 # Voz nativa, admissão e grafia — RC10.1
 
 Use quando o titular deu uma ordem no celular e o modelo a compreendeu, mas a missão não apareceu. A referência foi atualizada após um caso real em 2026-11-18: a voz foi autenticada e transcrita, porém uma gramática ancorada no início ignorou o comando depois de uma introdução conversacional. Serviço conectado e testes sintéticos anteriores não comprovavam admissão daquele áudio.
@@ -7,6 +23,14 @@ Use quando o titular deu uma ordem no celular e o modelo a compreendeu, mas a mi
 Confirmar `ownerNaturalUtteranceProtocol=1` e a release/hash carregados. Consultar `intake` e `mission` pela ponte existente. `intake` distingue estado da decodificação, presença de pedido de envio, fonte admitida, tipo de registro e motivo da recusa. `fresh=false` é histórico; não tratá-lo como a ordem corrente. Um ditado admitido pode existir antes da tarefa e precisa continuar visível. Não usar `latestTask` antigo como recibo do pedido novo.
 
 Na versão administrativa corrigida, uma instrução direta pode vir depois de um preâmbulo conversacional. A seleção considera apenas conteúdo nativo autenticado e não interpreta comando em citação, hipótese, narrativa de terceiro ou negação. Ela não cria autoridade a partir da transcrição entregue pelo modelo. Escopo não compreendido fica em preparação para plano completo ou gera falha técnica explícita; não copiar instruções de acompanhamento para o corpo inicial nem alegar falta de consentimento.
+
+## Admissão recusada após decodificação completa
+
+Se `intake.state=complete`, `has_send_request=true`, `source_registered=false` e `reason=VOICE_INTENT_NOT_ADMITTED`, descreva falha de admissão do pedido, não falha comprovada do transcritor nem falta de consentimento. Registre a captura enquanto `fresh=true`; uma fotografia datada não mantém a fonte válida.
+
+Reproduza separadamente seleção do comando, identificação, corpo e restrições. Compare linguagem com referência ao canal, expressão celular/telefone do contato, aposto de parentesco e vocativo transcrito como Char. Os parsers podem divergir entre missão de contato externo e ditado por alias local. Um teste deve ter controle positivo e negação; ler a transcrição do agente não comprova as palavras exatas do decoder protegido.
+
+Verifique também se não responda nada e uma ressalva final de segurança vazam para o corpo literal. Corrigir só o reconhecimento pode revelar envio de controles indevidos. O reparo deve manter a proibição de resposta em campo próprio e usar preparação/prévia quando o span for ambíguo, sem afrouxar autenticação, fonte, negações ou idempotência. Não rearmar o áudio do incidente para validar a correção.
 
 ## Acompanhamento falado
 

@@ -11,4 +11,7 @@ class NativeIntakeDiagnosticTests(unittest.TestCase):
   x=m.project_pending({'intake':{'type':'voice','fresh':True,'state':'complete','source_registered':True,'registered_kind':'dictation','reason':'SOURCE_REGISTERED'}});self.assertEqual(x['intake']['registered_kind'],'dictation')
  def test_unknown_reason_and_capability_are_not_invented(self):
   x=m.project_pending({'intake':{'type':'PRIVATE_TYPE','state':'PRIVATE_STATE','reason':'PRIVATE_TOKEN','registered_kind':'PRIVATE_TOOL'}});self.assertEqual(x['intake']['reason'],'unknown');self.assertNotIn('PRIVATE_',json.dumps(x));self.assertFalse(m.project_health({})['capabilities']['ownerNaturalUtteranceProtocol'])
+ def test_structured_protocol_is_observed_not_assumed(self):
+  self.assertFalse(m.project_health({})['capabilities']['ownerStructuredRequestProtocol'])
+  self.assertTrue(m.project_health({'capabilities':{'ownerStructuredRequestProtocol':1}})['capabilities']['ownerStructuredRequestProtocol'])
 if __name__=='__main__':unittest.main()

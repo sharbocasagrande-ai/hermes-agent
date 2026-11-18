@@ -1,6 +1,6 @@
-# RC10 e RC10.1: missão, agenda e aceite
+# RC10, RC10.1 e RC10.2: missão, agenda e aceite
 
-Revisão 2026-11-18. O preparo original partiu da RC9.1; a configuração de referência foi instalada em RC10 e corrigida para RC10.1 após uma falha real de admissão. Isso não comprova aceite em qualquer host. Não confundir teste isolado, código carregado e efeito no canal real. Ler [voz nativa e admissão](voz-nativa-e-admissao-rc10-1.md).
+Revisão 2026-11-18. O preparo original partiu da RC9.1; a configuração de referência foi instalada em RC10 e corrigida para RC10.1 após uma falha real de admissão. A referência atual é RC10.2 com a revisão fix1 de preservação da recusa, análise estrutural comum e `ownerStructuredRequestProtocol=1`. Isso não comprova instalação ou aceite em qualquer host. Não confundir teste isolado, código carregado e efeito no canal real. Ler [voz nativa e admissão](voz-nativa-e-admissao-rc10-1.md).
 
 ## O que muda
 
