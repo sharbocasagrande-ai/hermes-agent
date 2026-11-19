@@ -1,3 +1,5 @@
+> Escopo histórico/legado: com ownerGeneralMissionProtocol=1, a operação de fontes novas segue [RC11](missoes-gerais-e-regras-sql-rc11.md). As restrições e interfaces abaixo descrevem os protocolos anteriores; não substituem as escolhas atuais do titular.
+
 # Confirmação contextual — plano completo e origem protegida
 
 Revisão 2026-11-17. Esta referência descreve o contrato introduzido no RC9 e conservado no RC9.1. Consulte a capacidade `ownerContextPlanProtocol`: sem valor 1 na ponte ativa, a extensão ainda não está instalada. Arquivo escrito ou skill carregada não comprovam instalação do runtime.
@@ -34,7 +36,7 @@ Mensagem: “literal da primeira mensagem”
 Acompanhamento: nenhum
 ```
 
-Só incluir bloqueio quando o titular o pedir. Não tratar a proposta gerada como autorização; a ponte publica o plano inteiro ao titular. Ela valida gramática e destino e conserva fonte, texto, condição, resposta, término, hash, validade, estado e ID da prévia. O mesmo ID de preparação não pode trocar silenciosamente de proposta.
+Só incluir bloqueio de contato quando o titular pedir expressamente bloquear o contato ou a pessoa. Encerrar ou bloquear respostas significa terminar o acompanhamento, não bloquear a pessoa. Não tratar a proposta gerada como autorização; a ponte publica o plano inteiro ao titular. Ela valida gramática e destino e conserva fonte, texto, condição, resposta, término, hash, validade, estado e ID da prévia. O mesmo ID de preparação não pode trocar silenciosamente de proposta.
 
 Uma ordem textual nativa sem aspas com acompanhamento literal reconhecido também pode gerar essa prévia automaticamente. Linguagem arbitrária continua exigindo compreensão e limites verificáveis; o parser não cobre toda frase possível.
 
@@ -55,6 +57,8 @@ A condição exata aceita somente a resposta correspondente do contato indicado.
 ## 7. Falhas e comunicação
 
 Se `plan.state` for `uncertain`, não republicar automaticamente. Se a tarefa tiver resultado incerto, reconciliar o mesmo efeito sem criar nova tarefa. Uma confirmação anterior à prévia não pode ganhar autoridade por reapresentação.
+
+Confira plano e preparação separadamente: uma preparação ainda pendente não revalida um plano expirado. Use apenas a transição de recuperação que o contrato efetivamente oferecer, preservando origem e idempotência; não reenviar a mesma preparação para tentar fabricar prazo novo nem pedir confirmações sucessivas para suprir uma transição ausente. Para reduzir expiração evitável, publique a prévia somente depois das leituras e decisões necessárias e não intercale explicações posteriores.
 
 Uma pergunta livre do modelo seguida de “Isso” não substitui esse fluxo. Se houve esclarecimento, usar a preparação existente para publicar o plano completo, sem pedir número/texto já disponíveis e sem chamar a falha de falta de consentimento. Se não existir fonte admitida, informar a etapa técnica não registrada e preservar o diagnóstico para manutenção.
 

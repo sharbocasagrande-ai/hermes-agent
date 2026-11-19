@@ -1,3 +1,5 @@
+> Escopo histórico/legado: com ownerGeneralMissionProtocol=1, a operação de fontes novas segue [RC11](missoes-gerais-e-regras-sql-rc11.md). As restrições e interfaces abaixo descrevem os protocolos anteriores; não substituem as escolhas atuais do titular.
+
 # RC10, RC10.1 e RC10.2: missão, agenda e aceite
 
 Revisão 2026-11-18. O preparo original partiu da RC9.1; a configuração de referência foi instalada em RC10 e corrigida para RC10.1 após uma falha real de admissão. A referência atual é RC10.2 com a revisão fix1 de preservação da recusa, análise estrutural comum e `ownerStructuredRequestProtocol=1`. Isso não comprova instalação ou aceite em qualquer host. Não confundir teste isolado, código carregado e efeito no canal real. Ler [voz nativa e admissão](voz-nativa-e-admissao-rc10-1.md).

@@ -1,3 +1,5 @@
+> Escopo histórico/legado: com ownerGeneralMissionProtocol=1, a operação de fontes novas segue [RC11](missoes-gerais-e-regras-sql-rc11.md). As restrições e interfaces abaixo descrevem os protocolos anteriores; não substituem as escolhas atuais do titular.
+
 # Classificação e revisão de escopo — RC10.5
 
 O novo áudio com RC10.4 ativa misturou pedido de revisão da VPS com envio futuro a um contato. O decoder protegido confirmou a recusa de admissão. A falha era confundir preâmbulo positivo desconhecido com recusa de segurança. Outra seleção antiga descartava qualquer prefixo terminado em pontuação; esse atalho foi removido. Não interpretar uma oração futura isolada como envio direto nem afirmar que a manutenção antecedente ocorreu.

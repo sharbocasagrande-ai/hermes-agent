@@ -1,6 +1,6 @@
 import importlib.util,json,unittest
 from pathlib import Path
-p=Path(__file__).resolve().parents[2]/'optional-skills/communication/whatsapp-envios-protegidos/scripts/diagnostico.py';s=importlib.util.spec_from_file_location('native_diag',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+p=Path(__file__).resolve().parents[2]/'scripts/diagnostico.py';s=importlib.util.spec_from_file_location('native_diag',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 class NativeIntakeDiagnosticTests(unittest.TestCase):
  def test_fresh_unadmitted_voice_does_not_look_like_old_success(self):
   x=m.project_pending({'intake':{'type':'voice','fresh':True,'state':'complete','has_send_request':True,'source_registered':False,'reason':'VOICE_INTENT_NOT_ADMITTED','transcript':'PRIVATE_BODY','inbound':'PRIVATE_OWNER_ID','token':'PRIVATE_TOKEN'}})
@@ -27,3 +27,11 @@ class NativeIntakeDiagnosticTests(unittest.TestCase):
   x=m.project_pending({'preparation':{'reviewRequired':True,'objective':'PRIVATE_OBJECTIVE','preparationId':'PRIVATE_ID','recipient_name':'PRIVATE_PERSON'}});self.assertTrue(x['preparation_review_required']);self.assertNotIn('PRIVATE_',json.dumps(x))
   for bad in [None,False,'true',1]:self.assertFalse(m.project_pending({'preparation':{'reviewRequired':bad}})['preparation_review_required'])
 if __name__=='__main__':unittest.main()
+
+def test_general_mission_projection_keeps_only_counts_and_rules():
+    raw={'general_mission':{'rules':{'version':2,'send_mode':'direct_clear','reply_defaults':{'goal':'PRIVATE_GOAL'}},'current':{'state':'sent','kind':'send','sourceId':'PRIVATE_SOURCE','native_text':'PRIVATE_TRANSCRIPT','context':[{'text':'PRIVATE_HISTORY'}],'recipients':[{'state':'sent','recipient':'PRIVATE_PHONE','text':'PRIVATE_BODY','result_id':'PRIVATE_RECEIPT'}]}}}
+    out=m.project_pending(raw)
+    assert out['general_source_present'] and out['general_state']=='sent'
+    assert out['general_recipient_count']==1 and out['general_sent_count']==1
+    assert out['rules_version']==2 and out['send_mode']=='direct_clear'
+    assert 'PRIVATE_'not in json.dumps(out)

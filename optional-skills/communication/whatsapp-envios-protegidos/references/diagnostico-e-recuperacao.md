@@ -1,3 +1,5 @@
+> Escopo histórico/legado: com ownerGeneralMissionProtocol=1, a operação de fontes novas segue [RC11](missoes-gerais-e-regras-sql-rc11.md). As restrições e interfaces abaixo descrevem os protocolos anteriores; não substituem as escolhas atuais do titular.
+
 # Diagnóstico e recuperação sem reduzir a segurança
 
 ## Ordem de investigação

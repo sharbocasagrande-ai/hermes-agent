@@ -1,3 +1,11 @@
+# Configuração vigente — RC11 / skill 2.3.0
+
+Envio direto quando claro, múltiplos destinatários completos, resposta literal ou objetivo com prazo e quantidade definidos por ordem/padrão. Regras futuras ajustáveis pelo WhatsApp e versionadas em SQL. Identidade e autenticação exclusivas permanecem protegidas. Confira capacidade, hash e estado reais; este documento não prova instalação nem envio.
+
+Leia [missões gerais](references/missoes-gerais-e-regras-sql-rc11.md).
+
+## Registro anterior
+
 # Configurações do WhatsApp — envio e resposta sob ordem do titular
 
 Versão da skill: 2.2.8, revisão em 2026-11-18. Contrato de referência: RC10.5, conservando envio nativo e acompanhamento finito do RC8 e planos contextuais do RC9. Conferir `ownerContextPlanProtocol=1` e `ownerFollowupSpeechProtocol=1`, `ownerNaturalUtteranceProtocol=1`, `ownerStructuredRequestProtocol=1`, `ownerStructuredRequestRevision=5`, release e hash carregados. Uma instalação antiga não ganha capacidades por ler esta skill. Identidades, caminhos e comprovantes pessoais ficam no inventário privado do titular.

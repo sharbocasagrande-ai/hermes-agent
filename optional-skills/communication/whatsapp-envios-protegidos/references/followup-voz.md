@@ -1,3 +1,5 @@
+> Escopo histórico/legado: com ownerGeneralMissionProtocol=1, a operação de fontes novas segue [RC11](missoes-gerais-e-regras-sql-rc11.md). As restrições e interfaces abaixo descrevem os protocolos anteriores; não substituem as escolhas atuais do titular.
+
 # Diagnóstico de UNSUPPORTED_FOLLOWUP em voz
 
 Não interpretar esse código como falta universal do recurso de acompanhamento. Localizar o parser da versão ativa e reproduzir o texto equivalente em funções puras, com contato sintético e sem envio. A reprodução pela transcrição de leitura não prova qual texto exato saiu do decoder protegido original.

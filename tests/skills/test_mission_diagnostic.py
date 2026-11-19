@@ -1,6 +1,6 @@
 import importlib.util,json,unittest
 from pathlib import Path
-p=Path(__file__).resolve().parents[2]/'optional-skills/communication/whatsapp-envios-protegidos/scripts/diagnostico.py';spec=importlib.util.spec_from_file_location('skill_diagnostic',p);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+p=Path(__file__).resolve().parents[2]/'scripts/diagnostico.py';spec=importlib.util.spec_from_file_location('skill_diagnostic',p);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 class DiagnosticTests(unittest.TestCase):
  def test_mission_minimal_not_old_task_success(self):
   result=m.project_pending({'mission':{'state':'recipient_pending','reason':'CONTACT_PROVIDER_UNAVAILABLE','missionId':'PRIVATE_ID','query':'PRIVATE_NAME','text':'PRIVATE_BODY','recipient':'PRIVATE_PHONE','revision':2,'candidate_count':0},'latestTask':None})
