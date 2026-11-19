@@ -1,5 +1,7 @@
 # Missões gerais e regras SQL — RC11
 
+Na RC12, [identificação semântica](identificacao-semantica-e-parentesco-rc12.md) sucede os guardas lexicais e acrescenta conhecimento de identidade separado da autoridade. O contrato de regras e recibos abaixo permanece.
+
 A direção explícita de 2026-11-19 é envio direto quando claro, acompanhamento literal ou por objetivo conforme cada ordem, e padrões futuros ajustáveis pelo WhatsApp. Autenticação exclusiva permanece estrutural. Não há cadastro de destinatário como comandante.
 
 ## Contrato da fonte

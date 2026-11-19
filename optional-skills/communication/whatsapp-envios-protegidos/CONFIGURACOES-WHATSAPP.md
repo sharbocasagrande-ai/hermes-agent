@@ -1,3 +1,9 @@
+# Configuração vigente — RC12 / skill 2.4.0
+
+Identificação semântica de pessoas, parentesco e descrições, sem lista de destinatários permitidos. Conhecimento de identidade em SQL é separado de autenticação. Envio direto quando claro; pergunta somente sobre identidade/conteúdo incertos. Missão completa preservada durante perguntas e revisão. [Contrato RC12](references/identificacao-semantica-e-parentesco-rc12.md). Conferir instalação/hash e recibos atuais.
+
+## Histórico RC11
+
 # Configuração vigente — RC11 / skill 2.3.0
 
 Envio direto quando claro, múltiplos destinatários completos, resposta literal ou objetivo com prazo e quantidade definidos por ordem/padrão. Regras futuras ajustáveis pelo WhatsApp e versionadas em SQL. Identidade e autenticação exclusivas permanecem protegidas. Confira capacidade, hash e estado reais; este documento não prova instalação nem envio.
